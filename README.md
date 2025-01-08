@@ -7,6 +7,7 @@ This project demonstrates the implementation of symmetric encryption and hashing
 # 
 ### Creating Sample Text Files
 ![Creating Sample Text Files](https://github.com/user-attachments/assets/3bbb959e-66d3-4394-be85-1230b46eb7c9)
+
 `echo 'desired text' > 'filename'`: This command is used to write content into new files
 - `echo`: Outputs the text either to the screen or redirects to a file
 - `desired text`: The text you want to write into the file
@@ -17,6 +18,7 @@ After running the command, we can see that there are now three new files; *clear
 ______________________________________________________________________________________________________________
 ### Encrypting a File 
 ![Encrypting a File (Symmetric)](https://github.com/user-attachments/assets/464e14af-2d8a-4444-8a78-08060eba2cd1)
+
 `openssl aes-256-cbc -e -pbkdf2 -in sample.txt -out encrypted_sample.txt`: This command encrypts the contents of `sample.txt` using AES-256-CBC encryption with PBKDF2 derivation and writes the result to a new file, `encrypted_sample.txt`
 - `openssl`: A command-line tool for cryptographic operations
 - `aes-256-cbc`: This specifies the encryption algorithm (AES with a 256-bit key in CBC mode)
@@ -31,6 +33,7 @@ ________________________________________________________________________________
 ______________________________________________________________________________________________________________
 ### Decrypting a File
 ![Decrypting a File (Symmetric)](https://github.com/user-attachments/assets/df2b65c8-b3f6-4db8-9dad-f88ba2b935be)
+
 `openssl aes-256-cbc -d -pbkdf2 -in encrypted_sample.txt -out decrypted_sample.txt`: This command decrypts the contents of `encrypted_sample.txt` using the AES-256-CBC algorithm with PBKDF2 derivation and writes the decrypted content to `decrypted_sample.txt`
 - `-d`: Indicates decryption mode
 - `-in encrypted_sample.txt`: Specifies the input file that is encrypted (`encrypted_sample.txt)
@@ -40,7 +43,9 @@ ________________________________________________________________________________
 ______________________________________________________________________________________________________________
 ### Hashing Files
 ![Hashing Regular File and Encrypted File](https://github.com/user-attachments/assets/55dd2878-5985-4c7e-a4d2-2835fe4267b7)
+
 `sha256sum plain.txt > hashed_plain.txt`: This command generates the SHA-256 hash of the original file (`plain.txt`) and saves it to a new file (`hashed_plain.txt`)
+
 `sha256sum encrypted_sample.txt > hashed_encrypted_sample.txt`: This command generates the SHA-256 hash of the encrypted file (`encrypted_sample.txt`) and saves it to a new file (`hashed_encrypted_sample.txt`)
 - `sha256sum`: This command computes the SHA-256 hash of a file. SHA-256 is a cryptographic hash function that generates a 256-bit hash value
 - `plain.txt` & `encrypted_sample.txt`: Input files to be hashed
@@ -50,6 +55,7 @@ After hashing the two files, we observe that their hash values are entirely diff
 __________________________________________________________________________________________________________________
 ### Validating File Integrity
 ![Validating File Integrity](https://github.com/user-attachments/assets/3b66fc14-3ae5-4872-b64b-62d641592430)
+
 `sha256sum -c hashed_plain.txt`: This command reads the hashed value in (`hashed_plain.txt`) and comapres it to the hash of the file (`plain.txt`)
 - `-c`: Stands for "check." It instructs `sha256sum` to verify the hashes listed in the specified file against the corresponding files
 
@@ -60,3 +66,11 @@ When the hashes match, a success message is displayed (e.g., `plain.txt: OK`)
 - `>>`: Appends the output of the echo command to the end of the specified file (`hashed_sample.txt`)
 
 Appending the string 'abc123' to `hashed_plain.txt` compromises its integrity, indicating tampering. Running `sha256sum -c hashed_plain.txt` to verify the hash results in a 'FAILED' message, as the hash values no longer match.
+
+## Lessons Learned
+
+- **Encryption for Data Security:** Encrypting files ensures sensitive information is protected from unauthorized access.
+- **Hashing for Integrity:** Hashes verify file integrity and detect any tampering or corruption.
+- **Validation Techniques:** Tools like diff and sha256sum -c confirm successful encryption, decryption, and file authenticity.
+- **Secure File Practices:** Deleting plaintext files after encryption minimizes exposure risks.
+- **Hands-On Cryptography:** Practical experience with openssl and sha256sum demonstrates real-world data security applications.
