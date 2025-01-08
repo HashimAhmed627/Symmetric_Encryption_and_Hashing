@@ -36,7 +36,7 @@ ________________________________________________________________________________
 - `-in encrypted_sample.txt`: Specifies the input file that is encrypted (`encrypted_sample.txt)
 - `-out decrypted_sample.txt`: Specifies the output file where the decrypted content will be saved (`decrypted_sample.txt`)
 
-`diff decrypted_sample.txt sample.txt`: I ran this command to check for any differences between the original file (`sample.txt`) and the decrypted file (`decrypted_sample.txt`). Since the command returned no output, it confirms that the files are identical, validating that the encryption and decryption processes were successful
+`diff decrypted_sample.txt sample.txt`: I ran this command to check for any differences between the original file (`sample.txt`) and the decrypted file (`decrypted_sample.txt`). Since the command returned no output, it confirms that the files are identical, validating that the encryption and decryption processes were successful.
 ______________________________________________________________________________________________________________
 ### Hashing Files
 ![Hashing Regular File and Encrypted File](https://github.com/user-attachments/assets/55dd2878-5985-4c7e-a4d2-2835fe4267b7)
@@ -46,8 +46,17 @@ ________________________________________________________________________________
 - `plain.txt` & `encrypted_sample.txt`: Input files to be hashed
 - `hashed_plain.txt` & `hashed_encrypted_sample.txt`: Output files that will store the corresponding hash values
 
-After hashing the two files, we observe that their hash values are entirely different, making it significantly harder for anyone to infer the contents of the original files
+After hashing the two files, we observe that their hash values are entirely different, making it significantly harder for anyone to infer the contents of the original files.
 __________________________________________________________________________________________________________________
 ### Validating File Integrity
 ![Validating File Integrity](https://github.com/user-attachments/assets/3b66fc14-3ae5-4872-b64b-62d641592430)
+`sha256sum -c hashed_plain.txt`: This command reads the hashed value in (`hashed_plain.txt`) and comapres it to the hash of the file (`plain.txt`)
+- `-c`: Stands for "check." It instructs `sha256sum` to verify the hashes listed in the specified file against the corresponding files
 
+When the hashes match, a success message is displayed (e.g., `plain.txt: OK`)
+
+`echo abc123 >> hashed_plain.txt`: This command appends the string 'abc123' as a new line at the end of the `hashed_sample.txt` file
+- `echo abc123`: Outputs the string 'abc123' to the terminal or to a file when redirected
+- `>>`: Appends the output of the echo command to the end of the specified file (`hashed_sample.txt`)
+
+Appending the string 'abc123' to `hashed_plain.txt` compromises its integrity, indicating tampering. Running `sha256sum -c hashed_plain.txt` to verify the hash results in a 'FAILED' message, as the hash values no longer match.
