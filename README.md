@@ -70,7 +70,11 @@ Appending the string 'abc123' to `hashed_plain.txt` compromises its integrity, i
 ## Lessons Learned
 
 - **Encryption for Data Security:** Encrypting files ensures sensitive information is protected from unauthorized access.
+
 - **Hashing for Integrity:** Hashes verify file integrity and detect any tampering or corruption.
+
 - **Validation Techniques:** Tools like diff and sha256sum -c confirm successful encryption, decryption, and file authenticity.
+
 - **Secure File Practices:** Deleting plaintext files after encryption minimizes exposure risks.
+
 - **Hands-On Cryptography:** Practical experience with openssl and sha256sum demonstrates real-world data security applications.
